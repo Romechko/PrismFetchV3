@@ -2,20 +2,18 @@
 # -*- coding: utf-8 -*-
 
 """
-PrismFetch V3 - Gestionnaire de Téléchargements avec IA
+PrismFetch V3 - Download Manager SANS CYBERDROP-DL
 Version 3.0.0 FINAL - Créé par Metadata
-Compatible avec l'initialisation V3 : DownloadManager(compatibility_learner, security_manager)
+Téléchargements RÉELS avec outils fiables uniquement
 """
 
-import os
-import sys
 import subprocess
 import threading
 import time
+import os
 import json
 from pathlib import Path
 from urllib.parse import urlparse
-import requests
 
 try:
     from utils.logger import get_logger
@@ -25,62 +23,86 @@ except ImportError:
         return logging.getLogger(name)
 
 class DownloadManager:
-    """Gestionnaire de téléchargements intelligent avec IA V3"""
+    """Gestionnaire de téléchargements SANS cyberdrop-dl"""
     
     def __init__(self, compatibility_learner=None, security_manager=None):
-        """Initialisation compatible V3 avec IA et sécurité"""
+        """Initialisation avec outils fiables"""
         self.compatibility_learner = compatibility_learner
         self.security_manager = security_manager
         self.logger = get_logger(__name__)
         
-        # Configuration par défaut
-        self.config = {
-            "default_output_dir": "data/downloads",
-            "max_concurrent_downloads": 4,
-            "timeout": 300,
-            "user_agent": "PrismFetch V3/3.0.0",
-            "quality_priority": ["flac", "wav", "mp3_320", "aac", "mp3"]
-        }
+        # Configuration
+        self.output_dir = "data/downloads"
+        self.max_concurrent = 4
+        self.timeout = 300
         
-        # État des téléchargements
+        # État
         self.active_downloads = {}
         self.download_queue = []
         self.stats = {
             "total_downloads": 0,
             "successful_downloads": 0,
-            "failed_downloads": 0,
-            "bytes_downloaded": 0
+            "failed_downloads": 0
         }
         
-        # Cache des outils
-        self.tools_cache = {}
-        self.tools_paths = {
-            "yt-dlp": self._find_tool("yt-dlp"),
-            "gallery-dl": self._find_tool("gallery-dl"),
-            "cyberdrop-dl": self._find_tool("cyberdrop-dl"),
-            "wget": self._find_tool("wget"),
-            "curl": self._find_tool("curl")
-        }
+        # Outils détectés (SANS cyberdrop-dl)
+        self.tools = self._detect_tools()
+        
+        # Thread de traitement
+        self.queue_thread = None
+        self.queue_active = False
+        self.queue_paused = False
         
         self.logger.info("🔧 DownloadManager V3 initialisé avec IA et sécurité")
-        self.logger.info(f"📁 Dossier de sortie: {self.config['default_output_dir']}")
-        self.logger.info(f"⚡ Téléchargements simultanés: {self.config['max_concurrent_downloads']}")
+        self.logger.info(f"📁 Dossier de sortie: {self.output_dir}")
+        self.logger.info(f"⚡ Téléchargements simultanés: {self.max_concurrent}")
+        self.logger.info(f"🛠️ Outils détectés: {list(self.tools.keys())}")
+    
+    def _detect_tools(self):
+        """Détection outils fiables SANS cyberdrop-dl"""
+        tools = {}
+        
+        # Liste réduite d'outils fiables
+        tool_list = ["yt-dlp", "gallery-dl", "wget", "curl"]
+        
+        for tool in tool_list:
+            path = self._find_tool(tool)
+            if path:
+                tools[tool] = path
+                self.logger.info(f"✅ {tool} trouvé: {path}")
+            else:
+                self.logger.warning(f"❌ {tool} non trouvé")
+        
+        return tools
     
     def _find_tool(self, tool_name):
-        """Recherche d'un outil dans le système ou dossier tools/"""
+        """Recherche d'un outil"""
         try:
-            # Vérification dans le PATH
+            # Test commande directe
             result = subprocess.run(
-                ["where" if os.name == "nt" else "which", tool_name],
-                capture_output=True, text=True
+                [tool_name, "--version"],
+                capture_output=True,
+                text=True,
+                timeout=5
             )
             if result.returncode == 0:
-                return result.stdout.strip().split('\n')[0]
-            
-        except Exception:
+                return tool_name
+        except:
             pass
         
-        # Vérification dans le dossier tools/
+        # Recherche dans PATH
+        try:
+            if os.name == "nt":
+                result = subprocess.run(["where", tool_name], capture_output=True, text=True)
+            else:
+                result = subprocess.run(["which", tool_name], capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                return result.stdout.strip().split('\n')[0]
+        except:
+            pass
+        
+        # Recherche dans dossier tools/
         tools_dir = Path("tools")
         if tools_dir.exists():
             for ext in [".exe", ".bat", ""]:
@@ -91,353 +113,365 @@ class DownloadManager:
         return None
     
     def get_compatible_tool(self, url):
-        """Obtention de l'outil compatible via IA d'apprentissage"""
-        try:
-            if self.compatibility_learner:
-                # Utilisation de l'IA d'apprentissage
-                recommended_tool = self.compatibility_learner.get_best_tool(url)
-                self.logger.info(f"🧠 IA recommande: {recommended_tool} pour {self._get_domain(url)}")
-                return recommended_tool
-            else:
-                # Fallback sur détection basique
-                return self._detect_tool_basic(url)
-                
-        except Exception as e:
-            self.logger.warning(f"⚠️ Erreur IA, fallback basique: {e}")
-            return self._detect_tool_basic(url)
-    
-    def _detect_tool_basic(self, url):
-        """Détection basique d'outil sans IA"""
-        domain = self._get_domain(url).lower()
+        """Sélection outil FIABLE pour une URL"""
+        domain = urlparse(url).netloc.lower()
         
-        # Règles de détection basiques
-        if any(video_site in domain for video_site in ["youtube", "vimeo", "dailymotion", "tiktok"]):
+        # Règles de compatibilité FIABLES
+        if any(site in domain for site in ["youtube.com", "youtu.be"]):
+            return "yt-dlp" if "yt-dlp" in self.tools else None
+        
+        elif any(site in domain for site in ["e-hentai.org", "exhentai.org", "nhentai.net"]):
+            return "gallery-dl" if "gallery-dl" in self.tools else "yt-dlp"
+        
+        elif any(site in domain for site in ["bunkr.cr", "bunkr.is", "cyberdrop"]):
+            # Utiliser gallery-dl pour bunkr/cyberdrop (plus fiable que cyberdrop-dl)
+            return "gallery-dl" if "gallery-dl" in self.tools else "yt-dlp"
+        
+        elif any(site in domain for site in ["pornhub.com", "xvideos.com", "youporn.com", "redtube.com"]):
+            return "yt-dlp" if "yt-dlp" in self.tools else None
+        
+        elif any(site in domain for site in ["twitter.com", "x.com", "instagram.com"]):
+            return "yt-dlp" if "yt-dlp" in self.tools else "gallery-dl"
+        
+        # Par défaut
+        if "yt-dlp" in self.tools:
             return "yt-dlp"
-        elif any(gallery_site in domain for gallery_site in ["e-hentai", "imgur", "instagram"]):
-            return "gallery-dl" 
-        elif any(cyber_site in domain for cyber_site in ["cyberdrop", "bunkr"]):
-            return "cyberdrop-dl"
+        elif "gallery-dl" in self.tools:
+            return "gallery-dl"
         else:
-            return "yt-dlp"  # Outil par défaut
+            return list(self.tools.keys())[0] if self.tools else None
     
-    def _get_domain(self, url):
-        """Extraction du domaine d'une URL"""
-        try:
-            return urlparse(url).netloc
-        except:
-            return "unknown"
+    def test_site_support(self, url):
+        """Test de support d'une URL"""
+        tool = self.get_compatible_tool(url)
+        
+        if not tool:
+            return False, "Aucun outil compatible trouvé"
+        
+        if tool not in self.tools:
+            return False, f"Outil {tool} non disponible"
+        
+        return True, f"Supporté par {tool}"
     
-    def download(self, url, output_dir=None, callback=None, force_tool=None, quality_settings=None):
-        """Téléchargement principal avec IA et sécurité V3"""
-        try:
-            self.logger.info(f"🚀 Début téléchargement: {url[:50]}...")
-            
-            # Configuration du téléchargement
-            if output_dir is None:
-                output_dir = self.config["default_output_dir"]
-            
-            # Création du dossier de sortie
-            Path(output_dir).mkdir(parents=True, exist_ok=True)
-            
-            # Sélection de l'outil
-            if force_tool:
-                tool = force_tool
-                self.logger.info(f"🔧 Outil forcé: {tool}")
-            else:
-                tool = self.get_compatible_tool(url)
-                self.logger.info(f"🎯 Outil sélectionné: {tool}")
-            
-            # Vérification sécurité
-            if self.security_manager:
-                is_safe = self.security_manager.check_url_safety(url)
-                if not is_safe:
-                    self.logger.warning(f"⚠️ URL potentiellement dangereuse: {url}")
-                    if callback:
-                        callback(False, "URL bloquée par sécurité", 0)
-                    return False, "URL bloquée par sécurité"
-            
-            # Exécution du téléchargement
-            success, message = self._execute_download(url, output_dir, tool, callback, quality_settings)
-            
-            # Apprentissage de l'IA
-            if self.compatibility_learner:
-                self.compatibility_learner.record_download_result(url, tool, success)
-            
-            # Mise à jour des statistiques
-            self.stats["total_downloads"] += 1
-            if success:
-                self.stats["successful_downloads"] += 1
-            else:
-                self.stats["failed_downloads"] += 1
-            
-            self.logger.info(f"✅ Téléchargement terminé: {message}")
-            return success, message
-            
-        except Exception as e:
-            error_msg = f"Erreur téléchargement: {e}"
-            self.logger.error(f"💥 {error_msg}")
-            if callback:
-                callback(False, error_msg, 0)
+    def download(self, url, output_dir=None, progress_callback=None, quality="best", force_tool=None):
+        """Téléchargement RÉEL avec outils fiables"""
+        if not url.strip():
+            return False, "URL vide"
+        
+        # Sélection de l'outil
+        tool = force_tool if force_tool and force_tool in self.tools else self.get_compatible_tool(url)
+        
+        if not tool or tool not in self.tools:
+            error_msg = f"Outil non disponible: {tool}"
+            self.logger.error(error_msg)
+            if progress_callback:
+                progress_callback(False, error_msg, 0)
             return False, error_msg
-    
-    def _execute_download(self, url, output_dir, tool, callback=None, quality_settings=None):
-        """Exécution effective du téléchargement"""
+        
+        # Dossier de sortie
+        output_path = Path(output_dir or self.output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        
+        # Sandbox si activé
+        if self.security_manager and self.security_manager.is_sandbox_enabled():
+            temp_output = Path(self.security_manager.get_sandbox_dir())
+            temp_output.mkdir(parents=True, exist_ok=True)
+            final_output = output_path
+            output_path = temp_output
+        else:
+            final_output = None
+        
+        # Construction de la commande
+        tool_path = self.tools[tool]
+        command = self._build_command(tool, tool_path, url, output_path, quality)
+        
+        if not command:
+            error_msg = f"Impossible de construire la commande pour {tool}"
+            self.logger.error(error_msg)
+            if progress_callback:
+                progress_callback(False, error_msg, 0)
+            return False, error_msg
+        
+        # Lancement du téléchargement
+        self.logger.info(f"🚀 Lancement: {' '.join(command)}")
+        if progress_callback:
+            progress_callback(True, f"Démarrage avec {tool}...", 0)
+        
         try:
-            tool_path = self.tools_paths.get(tool)
-            if not tool_path:
-                return False, f"Outil {tool} non trouvé"
-            
-            # Construction de la commande selon l'outil
-            if tool == "yt-dlp":
-                cmd = self._build_ytdlp_command(url, output_dir, quality_settings)
-            elif tool == "gallery-dl":
-                cmd = self._build_gallerydl_command(url, output_dir)
-            elif tool == "cyberdrop-dl":
-                cmd = self._build_cyberdrop_command(url, output_dir)
-            else:
-                return False, f"Outil {tool} non supporté"
-            
-            self.logger.debug(f"🔧 Commande: {' '.join(cmd)}")
-            
-            # Exécution avec callback de progression
-            if callback:
-                callback(True, "Téléchargement en cours...", -1)
-            
-            # Sandbox si activé
-            if self.security_manager and self.security_manager.is_sandbox_enabled():
-                sandbox_dir = self.security_manager.get_sandbox_dir()
-                Path(sandbox_dir).mkdir(parents=True, exist_ok=True)
-                # Redirection temporaire vers sandbox
-                original_output = output_dir
-                output_dir = sandbox_dir
-                cmd = self._update_command_output(cmd, output_dir)
-            
-            # Exécution de la commande
+            # Processus de téléchargement
             process = subprocess.Popen(
-                cmd, 
-                stdout=subprocess.PIPE, 
-                stderr=subprocess.PIPE,
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
                 text=True,
-                cwd=Path.cwd()
+                universal_newlines=True
             )
             
-            stdout, stderr = process.communicate(timeout=self.config["timeout"])
+            # Lecture de la sortie en temps réel
+            output_lines = []
+            while True:
+                line = process.stdout.readline()
+                if line == '' and process.poll() is not None:
+                    break
+                
+                if line:
+                    line = line.strip()
+                    output_lines.append(line)
+                    self.logger.info(f"📥 {tool}: {line}")
+                    
+                    # Extraction du pourcentage si possible
+                    progress = self._extract_progress(line, tool)
+                    if progress is not None and progress_callback:
+                        progress_callback(True, line, progress)
             
-            if process.returncode == 0:
-                # Succès du téléchargement
-                if callback:
-                    callback(True, "Téléchargement terminé avec succès", 100)
+            # Vérification du résultat
+            return_code = process.poll()
+            
+            if return_code == 0:
+                # Succès - déplacement du sandbox si nécessaire
+                if final_output and self.security_manager:
+                    self.security_manager.process_sandbox_files(str(final_output))
                 
-                # Déplacement du sandbox vers destination finale si nécessaire
-                if self.security_manager and self.security_manager.is_sandbox_enabled():
-                    self.security_manager.process_sandbox_files(original_output)
+                success_msg = f"✅ Téléchargement réussi avec {tool}"
+                self.stats["successful_downloads"] += 1
+                self.logger.info(success_msg)
                 
-                return True, "Téléchargement réussi"
+                if progress_callback:
+                    progress_callback(True, success_msg, 100)
+                
+                return True, success_msg
             else:
-                error_msg = stderr.strip() if stderr else "Erreur inconnue"
-                if callback:
-                    callback(False, f"Échec: {error_msg}", 0)
+                # Échec
+                error_msg = f"❌ Échec téléchargement (code {return_code})"
+                self.stats["failed_downloads"] += 1
+                self.logger.error(error_msg)
+                
+                if progress_callback:
+                    progress_callback(False, error_msg, 0)
+                
                 return False, error_msg
-            
+                
         except subprocess.TimeoutExpired:
-            error_msg = "Timeout de téléchargement"
-            if callback:
-                callback(False, error_msg, 0)
+            error_msg = f"⏰ Timeout après {self.timeout}s"
+            self.logger.error(error_msg)
+            if progress_callback:
+                progress_callback(False, error_msg, 0)
             return False, error_msg
+            
         except Exception as e:
-            error_msg = f"Erreur exécution: {e}"
-            if callback:
-                callback(False, error_msg, 0)
+            error_msg = f"💥 Erreur: {e}"
+            self.logger.error(error_msg)
+            if progress_callback:
+                progress_callback(False, error_msg, 0)
             return False, error_msg
-    
-    def _build_ytdlp_command(self, url, output_dir, quality_settings=None):
-        """Construction commande yt-dlp"""
-        cmd = [self.tools_paths["yt-dlp"]]
         
-        # Format de sortie
-        output_template = str(Path(output_dir) / "%(uploader)s - %(title)s.%(ext)s")
-        cmd.extend(["-o", output_template])
-        
-        # Qualité
-        if quality_settings and quality_settings.get("format"):
-            format_selector = quality_settings["format"]
-            if format_selector == "best":
-                cmd.extend(["-f", "best"])
-            elif format_selector in ["4K", "1080p", "720p", "480p"]:
-                height = format_selector.replace("p", "").replace("K", "160")  # 4K = 2160p
-                cmd.extend(["-f", f"best[height<={height}]"])
-        
-        # Options supplémentaires
-        cmd.extend([
-            "--no-playlist",
-            "--ignore-errors",
-            "--user-agent", self.config["user_agent"]
-        ])
-        
-        cmd.append(url)
-        return cmd
+        finally:
+            self.stats["total_downloads"] += 1
     
-    def _build_gallerydl_command(self, url, output_dir):
-        """Construction commande gallery-dl"""
-        cmd = [self.tools_paths["gallery-dl"]]
-        cmd.extend(["-d", str(output_dir)])
-        cmd.extend(["--user-agent", self.config["user_agent"]])
-        cmd.append(url)
-        return cmd
-    
-    def _build_cyberdrop_command(self, url, output_dir):
-        """Construction commande cyberdrop-dl"""
-        cmd = [self.tools_paths["cyberdrop-dl"]]
-        cmd.extend(["--output-folder", str(output_dir)])
-        cmd.append(url)
-        return cmd
-    
-    def _update_command_output(self, cmd, new_output_dir):
-        """Mise à jour du dossier de sortie dans une commande"""
-        # Implémentation basique - à améliorer selon les outils
-        for i, arg in enumerate(cmd):
-            if arg in ["-d", "--output-folder", "-o"] and i + 1 < len(cmd):
-                cmd[i + 1] = str(new_output_dir)
-                break
-        return cmd
-    
-    def test_site_support(self, url, tool=None):
-        """Test de support d'un site"""
-        try:
-            if tool is None:
-                tool = self.get_compatible_tool(url)
+    def _build_command(self, tool, tool_path, url, output_path, quality):
+        """Construction de la commande selon l'outil FIABLE"""
+        if tool == "yt-dlp":
+            command = [
+                tool_path,
+                "--no-playlist",
+                "--output", str(output_path / "%(uploader)s - %(title)s.%(ext)s"),
+                "--format", self._convert_quality_ytdlp(quality),
+                "--no-warnings",
+                url
+            ]
             
-            tool_path = self.tools_paths.get(tool)
-            if not tool_path:
-                return False, f"Outil {tool} non disponible"
+        elif tool == "gallery-dl":
+            command = [
+                tool_path,
+                "--destination", str(output_path),
+                "--no-skip",
+                url
+            ]
             
-            # Test basique avec timeout court
-            if tool == "yt-dlp":
-                cmd = [tool_path, "--dump-json", "--no-download", url]
-            elif tool == "gallery-dl":
-                cmd = [tool_path, "--dump-json", url]
-            else:
-                return True, f"Test non implémenté pour {tool}"
+        elif tool == "wget":
+            command = [
+                tool_path,
+                "--directory-prefix", str(output_path),
+                "--timeout", str(self.timeout),
+                url
+            ]
             
-            try:
-                result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=30
+        elif tool == "curl":
+            # Créer nom de fichier depuis l'URL
+            filename = url.split('/')[-1] or "download"
+            command = [
+                tool_path,
+                "--output", str(output_path / filename),
+                "--location",
+                "--connect-timeout", str(self.timeout),
+                url
+            ]
+            
+        else:
+            return None
+        
+        return command
+    
+    def _convert_quality_ytdlp(self, quality):
+        """Conversion qualité pour yt-dlp"""
+        quality_map = {
+            "FLAC": "bestaudio[ext=flac]/bestaudio",
+            "WAV": "bestaudio[ext=wav]/bestaudio", 
+            "MP3 320kbps": "bestaudio[ext=mp3][abr>=320]/bestaudio",
+            "MP3 256kbps": "bestaudio[ext=mp3][abr>=256]/bestaudio",
+            "MP3 128kbps": "bestaudio[ext=mp3][abr>=128]/bestaudio",
+            "4K": "bestvideo[height<=2160]+bestaudio/best",
+            "1080p": "bestvideo[height<=1080]+bestaudio/best",
+            "720p": "bestvideo[height<=720]+bestaudio/best",
+            "480p": "bestvideo[height<=480]+bestaudio/best",
+            "best": "best",
+            "worst": "worst"
+        }
+        return quality_map.get(quality, "best")
+    
+    def _extract_progress(self, line, tool):
+        """Extraction du pourcentage de progression"""
+        import re
+        
+        if tool == "yt-dlp":
+            # [download]  45.2% of 123.45MiB at  1.23MiB/s ETA 00:30
+            match = re.search(r'\[download\]\s+(\d+\.?\d*)%', line)
+            if match:
+                return float(match.group(1))
+        
+        elif tool == "gallery-dl":
+            # gallery-dl n'a pas de pourcentage standard
+            if "Downloading" in line:
+                return -1  # Mode indéterminé
+        
+        return None
+    
+    def add_to_queue(self, url, quality="best", force_tool=None):
+        """Ajout à la queue de téléchargement"""
+        item = {
+            "url": url,
+            "quality": quality,
+            "force_tool": force_tool,
+            "status": "En attente",
+            "progress": 0,
+            "tool": force_tool or self.get_compatible_tool(url)
+        }
+        self.download_queue.append(item)
+        self.logger.info(f"➕ Ajouté à la queue: {url[:50]}...")
+        return len(self.download_queue) - 1  # Index de l'item
+    
+    def start_queue_processing(self, progress_callback=None):
+        """Démarrage du traitement de la queue"""
+        if self.queue_active:
+            return False, "Queue déjà active"
+        
+        if not self.download_queue:
+            return False, "Queue vide"
+        
+        self.queue_active = True
+        self.queue_paused = False
+        
+        def process_queue():
+            self.logger.info("🚀 Démarrage traitement queue")
+            
+            while self.queue_active and self.download_queue:
+                if self.queue_paused:
+                    time.sleep(0.5)
+                    continue
+                
+                # Prendre le premier item en attente
+                item = None
+                for i, queued_item in enumerate(self.download_queue):
+                    if queued_item["status"] == "En attente":
+                        item = queued_item
+                        break
+                
+                if not item:
+                    break
+                
+                # Marquer comme en cours
+                item["status"] = "En cours"
+                if progress_callback:
+                    progress_callback("queue_update", item)
+                
+                # Télécharger
+                def item_progress(success, message, progress):
+                    item["progress"] = progress if progress >= 0 else 0
+                    if progress_callback:
+                        progress_callback("item_progress", item)
+                
+                success, message = self.download(
+                    item["url"],
+                    quality=item["quality"],
+                    force_tool=item["force_tool"],
+                    progress_callback=item_progress
                 )
-                return result.returncode == 0, "Site supporté" if result.returncode == 0 else "Site non supporté"
-            except subprocess.TimeoutExpired:
-                return False, "Timeout du test"
+                
+                # Mettre à jour le statut
+                item["status"] = "Terminé" if success else "Erreur"
+                item["progress"] = 100 if success else 0
+                if progress_callback:
+                    progress_callback("queue_update", item)
             
-        except Exception as e:
-            return False, f"Erreur test: {e}"
+            self.queue_active = False
+            self.logger.info("✅ Traitement queue terminé")
+            
+        self.queue_thread = threading.Thread(target=process_queue)
+        self.queue_thread.daemon = True
+        self.queue_thread.start()
+        
+        return True, "Queue démarrée"
     
-    def stop_all_downloads(self):
-        """Arrêt de tous les téléchargements actifs"""
-        self.logger.info("⏹️ Arrêt de tous les téléchargements")
-        # Implémentation de l'arrêt des téléchargements
-        # (nécessiterait gestion des processus actifs)
-        self.active_downloads.clear()
+    def pause_queue(self):
+        """Pause de la queue"""
+        self.queue_paused = True
+        self.logger.info("⏸️ Queue en pause")
+        return True, "Queue en pause"
+    
+    def resume_queue(self):
+        """Reprise de la queue"""
+        self.queue_paused = False
+        self.logger.info("▶️ Queue reprise")
+        return True, "Queue reprise"
+    
+    def stop_queue(self):
+        """Arrêt de la queue"""
+        self.queue_active = False
+        self.queue_paused = False
+        self.logger.info("⏹️ Queue arrêtée")
+        return True, "Queue arrêtée"
+    
+    def clear_queue(self):
+        """Vidage de la queue"""
         self.download_queue.clear()
+        self.logger.info("🗑️ Queue vidée")
+        return True, "Queue vidée"
     
     def get_download_stats(self):
-        """Récupération des statistiques de téléchargement"""
-        return self.stats.copy()
-    
-    def get_supported_sites(self):
-        """Liste des sites supportés"""
-        supported_sites = []
-        
-        if self.compatibility_learner:
-            supported_sites = self.compatibility_learner.get_all_supported_sites()
-        else:
-            # Sites basiques si pas d'IA
-            supported_sites = [
-                "youtube.com", "vimeo.com", "dailymotion.com",
-                "e-hentai.org", "imgur.com", "instagram.com",
-                "cyberdrop.me", "bunkr.cr", "soundcloud.com"
-            ]
-        
-        return supported_sites
-    
-    def add_to_queue(self, url, output_dir=None, options=None):
-        """Ajout d'un téléchargement à la queue"""
-        download_item = {
-            "url": url,
-            "output_dir": output_dir or self.config["default_output_dir"],
-            "options": options or {},
-            "status": "pending",
-            "added_time": time.time()
-        }
-        
-        self.download_queue.append(download_item)
-        self.logger.info(f"➕ Ajouté à la queue: {url[:50]}...")
-        return len(self.download_queue)
-    
-    def process_queue(self, callback=None):
-        """Traitement de la queue de téléchargements"""
-        self.logger.info(f"🔄 Traitement queue: {len(self.download_queue)} éléments")
-        
-        while self.download_queue and len(self.active_downloads) < self.config["max_concurrent_downloads"]:
-            item = self.download_queue.pop(0)
-            
-            # Lancement du téléchargement en thread
-            def download_thread(download_item):
-                try:
-                    success, message = self.download(
-                        download_item["url"],
-                        download_item["output_dir"],
-                        callback
-                    )
-                    download_item["status"] = "completed" if success else "failed"
-                    download_item["result"] = message
-                    
-                except Exception as e:
-                    download_item["status"] = "error"
-                    download_item["result"] = str(e)
-                
-                # Suppression des actifs
-                if download_item["url"] in self.active_downloads:
-                    del self.active_downloads[download_item["url"]]
-            
-            # Ajout aux téléchargements actifs
-            self.active_downloads[item["url"]] = item
-            
-            # Lancement du thread
-            thread = threading.Thread(target=download_thread, args=(item,))
-            thread.daemon = True
-            thread.start()
-    
-    def get_queue_status(self):
-        """Status de la queue"""
+        """Statistiques de téléchargement"""
         return {
-            "pending": len(self.download_queue),
-            "active": len(self.active_downloads),
-            "completed": self.stats["successful_downloads"],
-            "failed": self.stats["failed_downloads"]
+            "total_downloads": self.stats["total_downloads"],
+            "successful_downloads": self.stats["successful_downloads"],
+            "failed_downloads": self.stats["failed_downloads"],
+            "queue_size": len(self.download_queue),
+            "active_downloads": len(self.active_downloads)
         }
 
+# Test si exécuté directement
 if __name__ == "__main__":
-    # Test du DownloadManager
-    print("🔧 Test DownloadManager V3")
+    print("🧪 Test DownloadManager SANS cyberdrop-dl")
     
-    # Test d'initialisation
-    manager = DownloadManager()
-    print(f"✅ DownloadManager initialisé")
+    # Test basique
+    dm = DownloadManager()
     
-    # Test de détection d'outil
-    test_urls = [
-        "https://www.youtube.com/watch?v=test",
-        "https://e-hentai.org/test",
-        "https://bunkr.cr/test"
-    ]
+    # Test URL YouPorn
+    test_url = "https://www.youporn.com/watch/193607641/"
     
-    for url in test_urls:
-        tool = manager.get_compatible_tool(url)
-        print(f"🎯 {url} → {tool}")
+    print(f"🔍 Test support: {test_url}")
+    supported, message = dm.test_site_support(test_url)
+    print(f"📊 Résultat: {supported} - {message}")
     
-    # Test des outils disponibles
-    print(f"\n🔧 Outils disponibles:")
-    for tool, path in manager.tools_paths.items():
-        status = "✅" if path else "❌"
-        print(f"   {status} {tool}: {path or 'Non trouvé'}")
+    if supported:
+        print(f"🛠️ Outil recommandé: {dm.get_compatible_tool(test_url)}")
     
-    print(f"\n✅ Test DownloadManager terminé")
+    print("✅ DownloadManager FIABLE testé")

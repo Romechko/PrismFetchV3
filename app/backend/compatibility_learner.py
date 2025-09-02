@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-PrismFetch V3 - IA d'Apprentissage des Compatibilités
+PrismFetch V3 - IA d'Apprentissage des Compatibilités  
 Version 3.0.0 FINAL - Créé par Metadata
 """
 
@@ -21,6 +21,7 @@ class CompatibilityLearner:
             "e-hentai.org": {"tool": "gallery-dl", "confidence": 0.95, "adult": True},
             "bunkr.cr": {"tool": "gallery-dl", "confidence": 0.90},
             "pornhub.com": {"tool": "yt-dlp", "confidence": 0.92, "adult": True},
+            "youporn.com": {"tool": "yt-dlp", "confidence": 0.92, "adult": True},
             "soundcloud.com": {"tool": "yt-dlp", "confidence": 0.94}
         }
         self.setup_database()
@@ -58,7 +59,7 @@ class CompatibilityLearner:
             row = cursor.fetchone()
             conn.close()
             if row:
-                return row[0]
+                return row
             for site, config in self.predefined_sites.items():
                 if site in domain:
                     return config["tool"]
