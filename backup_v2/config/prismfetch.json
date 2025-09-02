@@ -1,0 +1,7 @@
+{
+  "first_run": false,
+  "download_path": "C:/Users/Metadata/Desktop/PrismFetch-FINAL/data/downloads",
+  "temp_path": "data/temp",
+  "max_concurrent_downloads": 2,
+  "timeout_seconds": 600
+}

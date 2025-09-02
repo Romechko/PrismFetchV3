@@ -1,0 +1,32 @@
+general:
+  disable_crawlers: []
+  enable_generic_crawler: true
+  flaresolverr: null
+  max_file_name_length: 95
+  max_folder_name_length: 60
+  proxy: null
+  required_free_space: 5.0GB
+  ssl_context: truststore+certifi
+  user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0
+generic_crawlers_instances:
+  chevereto: []
+  discourse: []
+  wordpress_html: []
+  wordpress_media: []
+rate_limiting_options:
+  connection_timeout: 15
+  download_attempts: 5
+  download_delay: 0.5
+  download_speed_limit: 0B
+  file_host_cache_expire_after: P7D
+  forum_cache_expire_after: P28D
+  jitter: 0.0
+  max_simultaneous_downloads: 15
+  max_simultaneous_downloads_per_domain: 3
+  rate_limit: 50
+  read_timeout: 300
+ui_options:
+  downloading_item_limit: 5
+  refresh_rate: 10
+  scraping_item_limit: 5
+  vi_mode: false

@@ -1,0 +1,4 @@
+apprise_fixed: true
+default_config: Default
+pydantic_config: true
+simp_settings_adjusted: true

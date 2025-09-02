@@ -1,0 +1,23 @@
+{
+  "version": "3.0.0",
+  "app_name": "PrismFetch V3",
+  "created_by": "Metadata",
+  "interface": {
+    "theme": "darkly",
+    "mode": "simple",
+    "language": "fr"
+  },
+  "download": {
+    "default_path": "data/downloads",
+    "max_concurrent": 4,
+    "timeout": 300
+  },
+  "security": {
+    "tor_enabled": false,
+    "sandbox_enabled": true
+  },
+  "renaming": {
+    "enabled": true,
+    "backup_original": true
+  }
+}

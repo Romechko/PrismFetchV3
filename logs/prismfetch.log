@@ -1,0 +1,154 @@
+2025-09-02 02:51:44 [[32mINFO[0m] [4040] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:51:44 [[32mINFO[0m] [4040] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:51:44 [[32mINFO[0m] [4040] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:51:44 [[32mINFO[0m] [4040] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:51:44 [[32mINFO[0m] [4040] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:52:37 [[32mINFO[0m] [8504] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:52:37 [[32mINFO[0m] [8504] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:52:37 [[32mINFO[0m] [8504] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:52:37 [[32mINFO[0m] [8504] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:52:37 [[32mINFO[0m] [8504] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:53:37 [[32mINFO[0m] [29424] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:53:37 [[32mINFO[0m] [29424] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:53:37 [[32mINFO[0m] [29424] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:53:37 [[32mINFO[0m] [29424] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:53:37 [[32mINFO[0m] [29424] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 02:54:41 [[32mINFO[0m] [4028] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 02:54:59 [[32mINFO[0m] [28596] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 02:55:31 [[32mINFO[0m] [30444] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:55:31 [[32mINFO[0m] [30444] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:55:31 [[32mINFO[0m] [30444] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:55:31 [[32mINFO[0m] [30444] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:55:31 [[32mINFO[0m] [30444] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:55:32 [[32mINFO[0m] [30444] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 02:55:32 [[32mINFO[0m] [30444] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 02:55:32 [[32mINFO[0m] [30444] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.compatibility_learner.init_database:108 - 📊 Base de données d'apprentissage initialisée
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.compatibility_learner.load_predefined_compatibilities:177 - 📚 35 compatibilités prédéfinies chargées
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.compatibility_learner.__init__:51 - 🎓 Système d'apprentissage V3 initialisé
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.security_manager.__init__:62 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 02:56:14 [[32mINFO[0m] [11580] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:07:03 [[32mINFO[0m] [27964] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:07:03 [[32mINFO[0m] [27964] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:07:03 [[32mINFO[0m] [27964] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:07:03 [[32mINFO[0m] [27964] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:07:29 [[32mINFO[0m] [29700] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:07:30 [[32mINFO[0m] [29700] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:07:30 [[32mINFO[0m] [29700] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:07:30 [[32mINFO[0m] [29700] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:07:44 [[32mINFO[0m] [23656] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:07:45 [[32mINFO[0m] [23656] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:07:45 [[32mINFO[0m] [23656] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:07:45 [[32mINFO[0m] [23656] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:11:10 [[32mINFO[0m] [12160] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:11:10 [[32mINFO[0m] [12160] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:11:10 [[32mINFO[0m] [12160] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:11:10 [[32mINFO[0m] [12160] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:11:10 [[32mINFO[0m] [12160] gui.main_window.__init__:41 - ✅ Interface principale V3 initialisée
+2025-09-02 03:12:09 [[32mINFO[0m] [11672] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:12:09 [[32mINFO[0m] [11672] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:12:09 [[32mINFO[0m] [11672] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:12:09 [[32mINFO[0m] [11672] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:12:09 [[32mINFO[0m] [11672] gui.main_window.__init__:41 - ✅ Interface principale V3 initialisée
+2025-09-02 03:18:15 [[32mINFO[0m] [23668] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:18:15 [[32mINFO[0m] [23668] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:18:15 [[32mINFO[0m] [23668] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:18:15 [[32mINFO[0m] [23668] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:18:16 [[32mINFO[0m] [23668] gui.main_window.__init__:48 - ✅ Interface principale V3 initialisée
+2025-09-02 03:18:16 [[32mINFO[0m] [23668] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] gui.main_window.__init__:48 - ✅ Interface principale V3 initialisée
+2025-09-02 03:19:16 [[32mINFO[0m] [17696] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:19:47 [[32mINFO[0m] [17696] backend.download_manager.download:133 - 🚀 Début téléchargement: https://e-hentai.org/g/2931328/4da974ba6f/...
+2025-09-02 03:19:47 [[32mINFO[0m] [17696] backend.download_manager.get_compatible_tool:99 - 🧠 IA recommande: gallery-dl pour e-hentai.org
+2025-09-02 03:19:47 [[32mINFO[0m] [17696] backend.download_manager.download:148 - 🎯 Outil sélectionné: gallery-dl
+2025-09-02 03:21:28 [[32mINFO[0m] [17696] backend.download_manager.download:173 - ✅ Téléchargement terminé: Téléchargement réussi
+2025-09-02 03:37:05 [[32mINFO[0m] [30444] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:37:05 [[32mINFO[0m] [30444] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:37:05 [[32mINFO[0m] [30444] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:37:05 [[32mINFO[0m] [30444] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:37:06 [[32mINFO[0m] [30444] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 03:37:06 [[32mINFO[0m] [30444] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:38:42 [[32mINFO[0m] [30444] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 03:38:59 [[32mINFO[0m] [21776] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:39:00 [[32mINFO[0m] [21776] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:39:00 [[32mINFO[0m] [21776] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:39:00 [[32mINFO[0m] [21776] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:39:00 [[32mINFO[0m] [21776] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 03:39:00 [[32mINFO[0m] [21776] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:40:59 [[32mINFO[0m] [17696] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 03:41:00 [[32mINFO[0m] [21776] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 03:41:18 [[32mINFO[0m] [18748] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:43:23 [[32mINFO[0m] [18748] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 03:43:27 [[32mINFO[0m] [24384] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 03:53:04 [[32mINFO[0m] [24384] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 03:53:14 [[32mINFO[0m] [25244] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 03:53:14 [[32mINFO[0m] [25244] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 03:53:14 [[32mINFO[0m] [25244] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 03:53:14 [[32mINFO[0m] [25244] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 03:53:15 [[32mINFO[0m] [25244] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 03:53:15 [[32mINFO[0m] [25244] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 04:08:54 [[32mINFO[0m] [12848] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:09:40 [[32mINFO[0m] [20864] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 04:09:40 [[32mINFO[0m] [20864] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 04:09:40 [[32mINFO[0m] [20864] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 04:09:40 [[32mINFO[0m] [20864] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 04:09:41 [[32mINFO[0m] [20864] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 04:09:41 [[32mINFO[0m] [20864] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:10:04 [[32mINFO[0m] [20864] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 04:11:08 [[32mINFO[0m] [18048] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 04:11:08 [[32mINFO[0m] [18048] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 04:11:08 [[32mINFO[0m] [18048] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 04:11:08 [[32mINFO[0m] [18048] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 04:11:09 [[32mINFO[0m] [18048] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 04:11:09 [[32mINFO[0m] [18048] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:12:47 [[32mINFO[0m] [18048] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 04:18:47 [[32mINFO[0m] [12452] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 04:18:47 [[32mINFO[0m] [12452] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 04:18:47 [[32mINFO[0m] [12452] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 04:18:47 [[32mINFO[0m] [12452] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 04:18:48 [[32mINFO[0m] [12452] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 04:18:48 [[32mINFO[0m] [12452] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:18:58 [[32mINFO[0m] [12452] main.main:78 - 👋 Arrêt de PrismFetch V3
+2025-09-02 04:19:21 [[32mINFO[0m] [27024] main.main:56 - 🚀 Démarrage PrismFetch V3
+2025-09-02 04:19:21 [[32mINFO[0m] [27024] backend.download_manager.__init__:65 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 04:19:21 [[32mINFO[0m] [27024] backend.download_manager.__init__:66 - 📁 Dossier de sortie: data/downloads
+2025-09-02 04:19:21 [[32mINFO[0m] [27024] backend.download_manager.__init__:67 - ⚡ Téléchargements simultanés: 4
+2025-09-02 04:19:22 [[32mINFO[0m] [27024] gui.main_window.__init__:70 - ✅ Interface complète V3 initialisée
+2025-09-02 04:19:22 [[32mINFO[0m] [27024] main.main:67 - ✅ Interface V3 initialisée
+2025-09-02 04:19:28 [[32mINFO[0m] [27024] main.main:78 - 👋 Arrêt de PrismFetch V3

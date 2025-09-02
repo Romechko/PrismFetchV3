@@ -1,0 +1,17 @@
+{
+  "sites": {
+    "youtube.com": {
+      "tool": "yt-dlp",
+      "confidence": 0.98
+    },
+    "e-hentai.org": {
+      "tool": "gallery-dl",
+      "confidence": 0.95,
+      "adult": true
+    },
+    "bunkr.cr": {
+      "tool": "gallery-dl",
+      "confidence": 0.9
+    }
+  }
+}

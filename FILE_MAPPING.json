@@ -1,0 +1,39 @@
+{
+  "prismfetch_v3_files": {
+    "version": "3.0.0",
+    "total_files": 13,
+    "backend_modules": {
+      "app/backend/download_manager.py": "code_file:29",
+      "app/backend/security_manager.py": "code_file:92",
+      "app/backend/compatibility_learner.py": "code_file:93",
+      "app/backend/tool_detector.py": "code_file:95",
+      "app/backend/intelligent_renamer.py": "code_file:96"
+    },
+    "gui_modules": {
+      "app/gui/main_window.py": "code_file:89",
+      "app/gui/download_tab.py": "code_file:97",
+      "app/gui/security_tab.py": "code_file:98",
+      "app/gui/maintenance_tab.py": "code_file:99",
+      "app/gui/link_manager_tab.py": "code_file:100"
+    },
+    "utils_modules": {
+      "app/utils/logger.py": "code_file:101"
+    },
+    "main_files": {
+      "INSTALL_FIRST.py": "code_file:90",
+      "README.md": "code_file:94"
+    }
+  },
+  "installation_status": {
+    "structure_created": true,
+    "config_created": true,
+    "scripts_created": true,
+    "python_files_copied": false
+  },
+  "next_steps": [
+    "1. Copiez les 13 fichiers Python depuis leurs [code_file:XX]",
+    "2. Exécutez install.bat pour les dépendances",
+    "3. Lancez PrismFetchV3.bat pour tester",
+    "4. Profitez de toutes les fonctionnalités V3 !"
+  ]
+}
