@@ -223,3 +223,13 @@
 2025-09-02 17:23:18,367 [INFO] [792] PrismFetch.backend.download_manager.__init__:57 - 📁 Dossier de sortie: data/downloads
 2025-09-02 17:23:18,367 [INFO] [792] PrismFetch.backend.download_manager.__init__:58 - ⚡ Téléchargements simultanés: 4
 2025-09-02 17:23:18,367 [INFO] [792] PrismFetch.backend.download_manager.__init__:59 - 🛠️ Outils détectés: ['yt-dlp', 'gallery-dl', 'curl']
+2025-09-02 18:55:27,887 [INFO] [17144] PrismFetch.__main__.main:90 - 🚀 Démarrage PrismFetch V3
+2025-09-02 18:55:27,889 [INFO] [17144] PrismFetch.backend.security_manager.__init__:44 - 🔒 Gestionnaire de sécurité V3 initialisé
+2025-09-02 18:55:28,625 [INFO] [17144] PrismFetch.backend.download_manager._detect_tools:72 - ✅ yt-dlp trouvé: yt-dlp
+2025-09-02 18:55:28,832 [INFO] [17144] PrismFetch.backend.download_manager._detect_tools:72 - ✅ gallery-dl trouvé: gallery-dl
+2025-09-02 18:55:28,877 [WARNING] [17144] PrismFetch.backend.download_manager._detect_tools:74 - ❌ wget non trouvé
+2025-09-02 18:55:28,902 [INFO] [17144] PrismFetch.backend.download_manager._detect_tools:72 - ✅ curl trouvé: curl
+2025-09-02 18:55:28,902 [INFO] [17144] PrismFetch.backend.download_manager.__init__:56 - 🔧 DownloadManager V3 initialisé avec IA et sécurité
+2025-09-02 18:55:28,902 [INFO] [17144] PrismFetch.backend.download_manager.__init__:57 - 📁 Dossier de sortie: data/downloads
+2025-09-02 18:55:28,902 [INFO] [17144] PrismFetch.backend.download_manager.__init__:58 - ⚡ Téléchargements simultanés: 4
+2025-09-02 18:55:28,902 [INFO] [17144] PrismFetch.backend.download_manager.__init__:59 - 🛠️ Outils détectés: ['yt-dlp', 'gallery-dl', 'curl']
